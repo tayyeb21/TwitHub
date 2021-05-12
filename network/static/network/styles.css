@@ -1,0 +1,97 @@
+body{
+    background: #abbaab;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #ffffff, #abbaab) no-repeat fixed center;  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #ffffff, #abbaab) no-repeat fixed center; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.btn-post{
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+    color: #FFFFFF;
+    width: 20%;
+}
+.btn-post:hover{
+    background: linear-gradient(to top, #667db6, #0082c8, #0082c8, #667db6);
+    color: #EEECEB;
+    font-weight: 600;
+}
+.btn-following{
+    background-color: #EEECEB;
+    color: #000000;
+    border: 1px solid #000000;
+}
+.logo{
+    width: 60px;
+    height: 40px;
+}
+
+.nav-bg{
+    background: #667db6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.navbar-dark .navbar-nav .nav-link{
+    margin: auto 8px;
+    color: #FFFFFF;
+}
+li.nav-item.active{
+    border-bottom: 4px solid #FFFFFF;
+    font-weight: 600;
+}
+li.nav-item:hover{
+    font-weight: 600;
+}
+.link{
+    cursor: pointer;
+}
+.link:hover,
+.link:focus
+{
+    color: #667db6;
+    font-weight: 550;
+}
+#posts{
+    margin-bottom: 2%;
+}
+#like-count{
+    font-size: large;
+    font-weight: 550;
+}
+.like-icon{
+    color: #ff4141;
+    font-size: larger;  
+    animation-name: bigger;
+    animation-duration: .2s;
+    animation-timing-function: ease;
+    /* animation-iteration-count: infinite; */
+    animation-play-state: paused;
+}
+.btn.btn-like:focus,
+.btn.btn.btn-like:hover{
+    border: none;
+    box-shadow: 0px !important;
+}
+@keyframes bigger{
+    0%{
+        font-size: larger;
+    }
+    100%{
+        font-size: x-large;
+
+    }
+}
+
+@media screen and (max-width: 991px){
+    li.nav-item.active{
+        border-bottom: none;
+        border-left: 4px solid #FFFFFF;
+        font-weight: 600;
+    }
+}
+@media screen and (max-width: 768px){
+    .btn-post{
+        width: 50%;
+    }
+}
+/* .navbar-dark .navbar-nav .nav-link:hover{
+
+} */

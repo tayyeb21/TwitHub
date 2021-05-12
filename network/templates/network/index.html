@@ -1,0 +1,113 @@
+{% extends "network/layout.html" %} {% load static %} 
+{% block  style%}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+{% endblock  %}
+{% block script %}
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script src="{% static 'network/operations.js' %}"></script>
+<script src="{% static 'network/index.js' %}"></script>
+{% endblock %} 
+{% block body %}
+<div class="container">
+    <h1 id="heading"></h1>
+    <div id="homePosts">
+        {% if user.is_authenticated %}
+        <div id="newPost">
+          <div class="card mt-3">
+            <div class="card-body">
+              <h3 id="post-heading">New Post</h3>
+              <form id="postform" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <textarea name="newPost" id="newPost" class="form-control"></textarea>
+                </div>
+                <div class="form-group mx-auto">
+                  <button type="submit" id="postbtn" class="btn btn-post">Post</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <div id="profile" style="display: none;">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1 id="profileName">Abdul Tayyeb</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <strong>
+                                    <p class="text-center">Post</p>
+                                    <p id="post-count" class="text-center">5</p>
+                                </strong>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                  <strong id="follower-show" class="link">
+                                      <p class="text-center">Followers</p>
+                                      <p id="followerCount" class="text-center">5</p>
+                                  </strong>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <strong id="following-show" class="link">
+                                    <p class="text-center">Following</p>
+                                    <p id="followingCount" class="text-center">5</p>                                      
+                                </strong>
+                            </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-3 col-sm-*"></div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <button id="follow" class="btn btn-post" style="width: 100%;"><i class="fas fa-plus fa-sm"></i> follow</button>
+                                </div>
+                                <div class="col-lg-4 col-md-3 col-sm-*"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="posts"></div>
+        <div id="bottom-post" class="loader" >
+          <p id="post-loader"  class="text-center" style="display: none;"><i class="fas fa-spinner fa-spin"></i></p>
+          <legend id="no-posts" class="text-center"></legend>
+        </div>
+    </div>
+  <!-- Modal to see the follower and following -->
+  <div class="modal fade" id="follow-modal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <table id="followTable" class="table table-hover">
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script id="post" type="text/x-handlebars-template">
+  <div class="card mt-2">
+      <div class="card-body">
+          {% verbatim %}
+          <h5 id="poster" class="link">{{ poster }}</h5>
+          <p>{{ content }}</p>
+          <p class="text-secondary">{{ timestamp }}</p>
+          <p>
+              {{#if isLiked}}
+                  <a id="likebtn" class="btn"><i id="likedicon" class="fas fa-heart like-icon" title="unlike"></i>
+              {{else}}
+                  <a id="likebtn" class="btn"><i id="likeicon" class="far fa-heart like-icon" title="like"></i>
+              {{/if}}
+              <span id="like-count" >{{likeCount}}</span></a>
+          </p>
+          {% endverbatim %}
+      </div>
+  </div>
+</script>
+{{user.username|json_script:"current-user"}}
+{% endblock %}
